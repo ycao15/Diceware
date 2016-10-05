@@ -1,13 +1,16 @@
-The first few entries in the map/dictionary holding the words
-Github cannot seem to display them all on one line and putting 
-a newline after every word entry would be very messy, so this is
-just a document showing how the data structures were initialized 
-under the comment:
+The first few entries in the map/dictionary holding the words.
+
+Github can't seem to display the initializationd correctly (it cuts off most of the entries).
+Giving each entry its own line would be really messy and make the file really long in terms of lines.
+I'm not sure what's going on here because I've seen a few files on Github with very long lines that
+displayed properly. I'll have these files backed up in Google Drive as well then.
+
+Here's how the map/dictionary was initialized under the comment:
 	// the massive map of diceware words (7776 total)
     // probably more efficient than parsing a file for every word
 
-C++
-map<int, string> words = {{11111,"a"}, {11112,"a&p"},{11113,"a's"}} 
+C++ (map)
+map<int, string> words = {{11111,"a"}, {11112,"a&p"},{11113,"a's"}};
 
 Python (Dictionary)
 words_dict = {11111: "a", 11112: "a&p", 11113: "a's"}
