@@ -9,14 +9,13 @@ except ImportError:
 
 # generates the key
 def dice():
-	digitList = []
+	key = []
 	for i in range(5):
 		x = randint(1, 7)
 		stdout.write(str(x))
 		stdout.flush()
-		digitList.append(x)
+		key.append(str(x))
 	print('')
-	key = map(str, digitList)
 	return int(''.join(key))
 
 # load the dictionary of words to use from dictionary.txt
