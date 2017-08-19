@@ -1,17 +1,23 @@
-from random import SystemRandom
-
-# generate random number between 1 and 6 inclusive
-def random():
-	return SystemRandom().randrange(1,7) # uses /dev/urandom which is fairly secure
+try:
+	from quantumrandom import randint
+	from sys import stdout
+except ImportError:
+	import pip
+	print("*** Installing Quantum Random package")
+	pip.main(['install', 'quantumrandom'])
+	print('')
 
 # generates the key
 def dice():
-	key = random()
-	key += random() * 10
-	key += random() * 100
-	key += random() * 1000
-	key += random() * 10000
-	return key
+	digitList = []
+	for i in range(5):
+		x = randint(1, 7)
+		stdout.write(str(x))
+		stdout.flush()
+		digitList.append(x)
+	print('')
+	key = map(str, digitList)
+	return int(''.join(key))
 
 # load the dictionary of words to use from dictionary.txt
 dictionary = {}
@@ -21,13 +27,16 @@ with open("dictionary.txt") as f:
 		dictionary[int(key)] = val
 	f.close()
 
-# for python 3, change raw_input to input
-numberOfWords = int(raw_input("number of words in passphrase (at least 5): "))
-if (numberOfWords < 5):
-	numberOfWords = 5
+nWords = int(input("number of words [5,10]: "))
+if nWords < 5:
+	nWords = 5
+elif nWords > 10:
+	nWords = 10
+
+print("Generating keys...")
 
 passphrase = ""
-for i in range(numberOfWords):
+for i in range(nWords):
 	passphrase += dictionary[dice()] + " "
 
-print passphrase
+print(passphrase)
